@@ -1,0 +1,10 @@
+
+**** Log file opened at 2025-09-02 12:14:21.093949 UTC+05:30 (India Standard Time), Encoding UTF-8
+NW RFC Library: Kernel variant, Release 750 Patch Level 7, Compiled on Jan 20 2021 04:58:17
+ CPIC library: 753.2020.10.14 version 3, NI library: 40, Kernel Release: 753 Patch Level 728
+ Current working directory: C:\Users\bhaskar.veduruparthi\Desktop\vendor-portal\vendor-portal-server, Program: python
+ Hardware: PC with Windows NT 8x AMD64 Level 6 (Mod 142 Step 12), Operating_system: Windows NT 10.0
+ Hostname: YH1100031LT, IP address: 10.6.105.147, IPv6 address: fe80::8110:8ea0:563a:cc26
+
+2025-09-02 12:14:21.095823 [25004] >> Info entry
+	Did not find config file C:\Users\bhaskar.veduruparthi\Desktop\vendor-portal\vendor-portal-server\sapnwrfc.ini.
