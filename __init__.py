@@ -121,7 +121,7 @@ def Create_app():
             et_invoice_details = result.get('ET_INVOICE_DETAILS', [])
 
             for record in et_invoice_details:
-                invoice_date = datetime.strptime(record.get('AEDAT', ''), '%Y%m%d').date() if record.get('AEDAT') else None
+                invoice_date = datetime.datetime.strptime(record.get('BUDAT', ''), '%Y%m%d').date() if record.get('BUDAT') else None
 
                 invoice = Invoice(
                     supplier_code=record.get('LIFNR', ''),
