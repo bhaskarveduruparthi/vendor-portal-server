@@ -2,6 +2,7 @@ from flask import request, json , jsonify
 from extensions.BCRYPT import bcrypt
 from flask_restful import Resource
 from models.users_model import User
+from models.suppliers_model import Supplier
 from schemas.users_schema import user,users
 from default_settings import db 
 from blueprints import ulp
@@ -14,20 +15,27 @@ class User_Auth(Resource):
 
     @ulp.route('/login', methods=['POST'])
     def login_user():
-
         data = request.get_json()
         loginid = data['loginid']
         password = data['password']
-
-        post = User.query.filter_by(loginid=loginid).first()
+        usertype = data['userType']
 
         expires = datetime.timedelta(minutes=60)
 
-        if post and bcrypt.check_password_hash(post.password,password):
-           access_token = create_access_token(identity=loginid, expires_delta=expires)
-           return jsonify({'access_token': access_token})
+        # Check usertype and query the right table
+        if usertype == 'Admin':
+            user = User.query.filter_by(loginid=loginid).first()
+        elif usertype == 'Supplier':
+            user = Supplier.query.filter_by(loginid=loginid).first()
         else:
-           return jsonify({'message': 'Invalid credentials'}), 401
+            return jsonify({'message': 'Invalid usertype'}), 400
+
+        if user and bcrypt.check_password_hash(user.password, password):
+            access_token = create_access_token(identity=loginid, expires_delta=expires)
+            return jsonify({'access_token': access_token})
+        else:
+            return jsonify({'message': 'Invalid credentials'}), 401
+
         
 
     @ulp.route('/create_admin', methods=['POST'])
